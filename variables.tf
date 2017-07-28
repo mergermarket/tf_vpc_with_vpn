@@ -3,7 +3,7 @@ variable "name_prefix" {
 }
 
 variable "vpc_cidr" {
-  type        = "list"
+  type        = "string"
   description = "CIDR range for the VPC."
 }
 
