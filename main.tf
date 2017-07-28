@@ -3,7 +3,7 @@ data "aws_availability_zones" "available" {}
 module "vpc" {
   source = "github.com/mergermarket/tf_aws_vpc"
 
-  name = "${var.env}-vpc"
+  name = "${var.name_prefix}-vpc"
 
   cidr = "${var.vpc_cidr}"
   private_subnets = ["${var.private_subnet_cidrs}"]
@@ -19,14 +19,14 @@ module "vpc" {
 module "vpn" {
   source = "github.com/mergermarket/tf_aws_vpn_gw"
 
-  name   = "${var.env}-vpn"
+  name   = "${var.name_prefix}-vpn"
   vpc_id = "${module.vpc.vpc_id}"
 }
 
 module "leg_a_customer_gateway" {
   source = "github.com/mergermarket/tf_aws_customer_gw"
 
-  name = "${var.leg_a_name}"
+  name = "${var.name_prefix}-${var.leg_a_name}"
   vpn_gateway_id = "${module.vpn.vgw_id}"
   ip_address = "${var.leg_a_ip_address}"
   bgp_asn = "${var.leg_a_bgp_asn}"
@@ -40,7 +40,7 @@ module "leg_a_customer_gateway" {
 module "leg_b_customer_gateway" {
   source = "github.com/mergermarket/tf_aws_customer_gw"
 
-  name = "${var.leg_b_name}"
+  name = "${var.name_prefix}-${var.leg_b_name}"
   vpn_gateway_id = "${module.vpn.vgw_id}"
   ip_address = "${var.leg_b_ip_address}"
   bgp_asn = "${var.leg_b_bgp_asn}"

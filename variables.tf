@@ -1,5 +1,5 @@
-variable "env" {
-  description = "Environment name"
+variable "name_prefix" {
+  description = "Prefix for resource names."
 }
 
 variable "vpc_cidr" {
