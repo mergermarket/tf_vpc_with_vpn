@@ -17,11 +17,6 @@ variable "public_subnet_cidrs" {
   description = "CIDR ranges for the public subnets."
 }
 
-variable "vpc_cidr" {
-  type = "list"
-  description = "CIDR range for the VPC."
-}
-
 variable "leg_a_name" {
   type = "string"
   description = "Name label for leg A."
