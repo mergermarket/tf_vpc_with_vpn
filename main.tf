@@ -3,9 +3,11 @@ module "vpc" {
 
   name = "${var.name_prefix}-vpc"
 
-  cidr            = "${var.vpc_cidr}"
-  private_subnets = ["${var.private_subnet_cidrs}"]
-  public_subnets  = ["${var.public_subnet_cidrs}"]
+  cidr                     = "${var.vpc_cidr}"
+  private_subnets          = ["${var.private_subnet_cidrs}"]
+  public_subnets           = ["${var.public_subnet_cidrs}"]
+  private_propagating_vgws = ["${module.vpn.vgw_id}"]
+  public_propagating_vgws  = ["${module.vpn.vgw_id}"]
 
   enable_nat_gateway   = "true"
   enable_dns_support   = "true"
