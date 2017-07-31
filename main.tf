@@ -1,5 +1,3 @@
-data "aws_availability_zones" "available" {}
-
 module "vpc" {
   source = "github.com/mergermarket/tf_aws_vpc"
 
@@ -13,7 +11,7 @@ module "vpc" {
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
 
-  azs = ["${data.aws_availability_zones.available.names}"]
+  azs = ["${var.azs}"]
 }
 
 module "vpn" {

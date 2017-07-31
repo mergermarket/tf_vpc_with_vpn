@@ -7,6 +7,11 @@ variable "vpc_cidr" {
   description = "CIDR range for the VPC."
 }
 
+variable "azs" {
+  type        = "list"
+  description = "Availability zones."
+}
+
 variable "private_subnet_cidrs" {
   type        = "list"
   description = "CIDR ranges for the private subnets."
