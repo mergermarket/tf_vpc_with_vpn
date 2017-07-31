@@ -30,7 +30,7 @@ module "leg_a_customer_gateway" {
   bgp_asn                     = "${var.leg_a_bgp_asn}"
   destination_cidr_blocks     = []
   route_table_ids             = ["${concat(module.vpc.public_route_table_ids, module.vpc.private_route_table_ids)}"]
-  route_table_count           = "${length(concat(module.vpc.public_route_table_ids, module.vpc.private_route_table_ids))}"
+  route_table_count           = "${var.route_table_count}"
   static_routes_only          = "false"
   add_static_routes_to_tables = "false"
 }
@@ -44,7 +44,7 @@ module "leg_b_customer_gateway" {
   bgp_asn                     = "${var.leg_b_bgp_asn}"
   destination_cidr_blocks     = []
   route_table_ids             = ["${concat(module.vpc.public_route_table_ids, module.vpc.private_route_table_ids)}"]
-  route_table_count           = "${length(concat(module.vpc.public_route_table_ids, module.vpc.private_route_table_ids))}"
+  route_table_count           = "${var.route_table_count}"
   static_routes_only          = "false"
   add_static_routes_to_tables = "false"
 }

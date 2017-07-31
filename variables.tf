@@ -51,3 +51,8 @@ variable "leg_b_bgp_asn" {
   type        = "string"
   description = "BGP Autonomous System Number for leg B. If BGP is not in use, then by convention set this value to 65000."
 }
+
+variable "route_table_count" {
+  type        = "string"
+  description = "Number of route tables to propagate routes to - the ones created by this module. This is currently necessary because terraform is not able to use a computed value for a count :-("
+}
