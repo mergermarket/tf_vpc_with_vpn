@@ -1,6 +1,7 @@
 module "vpc" {
-  source = "github.com/mergermarket/tf_aws_vpc?ref=tmp_output_delete"
-
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "1.60.0"
+  
   name = "${var.name_prefix}-vpc"
 
   cidr                     = "${var.vpc_cidr}"
