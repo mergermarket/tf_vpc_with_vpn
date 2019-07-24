@@ -10,10 +10,6 @@ output "vpc_id" {
   value = "${module.vpc.vpc_id}"
 }
 
-output "nat_eips" {
-  value = ["${module.vpc.nat_eips}"]
-}
-
 output "vgw_id" {
   value = ["${module.vpn.vgw_id}"]
 }

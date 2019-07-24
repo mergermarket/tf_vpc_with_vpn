@@ -1,25 +1,32 @@
-module "vpc" {
-  source = "github.com/mergermarket/tf_aws_vpc"
+locals {
+  private = {
+    private = "true"
+    public  = "false"
+    access  = "private"
+  }
+  public = {
+    public  = "true"
+    private = "false"
+    access  = "public"
+  }
+}
 
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "1.60.0"
+  
   name = "${var.name_prefix}-vpc"
 
   cidr                     = "${var.vpc_cidr}"
   private_subnets          = ["${var.private_subnet_cidrs}"]
   public_subnets           = ["${var.public_subnet_cidrs}"]
-  private_propagating_vgws = ["${module.vpn.vgw_id}"]
-  public_propagating_vgws  = ["${module.vpn.vgw_id}"]
 
   enable_nat_gateway   = "true"
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
 
-  public_subnet_tags = {
-    "Public" = "true"
-  }
-
-  private_subnet_tags = {
-    "Private" = "true"
-  }
+  private_subnet_tags = "${local.private}"
+  public_subnet_tags = "${local.public}"
 
   azs = ["${var.azs}"]
 }
