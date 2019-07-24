@@ -20,7 +20,7 @@ module "vpc" {
     "Private" = "true"
   }
 
-  azs = ["${split(",", var.platform_config["azs"])}"]
+  azs = ["${var.azs}"]
 }
 
 module "vpn" {
