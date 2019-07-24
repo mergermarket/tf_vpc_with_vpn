@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "github.com/mergermarket/tf_aws_vpc"
+  source = "github.com/mergermarket/tf_aws_vpc?ref=tmp_output_delete"
 
   name = "${var.name_prefix}-vpc"
 
