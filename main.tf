@@ -1,3 +1,16 @@
+locals {
+  private = {
+    private = "true"
+    public  = "false"
+    access  = "private"
+  }
+  public = {
+    public  = "true"
+    private = "false"
+    access  = "public"
+  }
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "1.60.0"
@@ -12,13 +25,8 @@ module "vpc" {
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
 
-  public_subnet_tags = {
-    "Public" = "true"
-  }
-
-  private_subnet_tags = {
-    "Private" = "true"
-  }
+  private_subnet_tags = "${local.private}"
+  public_subnet_tags = "${local.public}"
 
   azs = ["${var.azs}"]
 }
