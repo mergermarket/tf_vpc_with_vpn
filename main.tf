@@ -45,24 +45,11 @@ module "leg_a_customer_gateway" {
   vpn_gateway_id              = "${module.vpn.vgw_id}"
   ip_address                  = "${var.leg_a_ip_address}"
   bgp_asn                     = "${var.leg_a_bgp_asn}"
-  destination_cidr_blocks     = [
-            "10.2.0.0/24",
-            "10.3.0.152/32",
-            "10.12.0.0/24",
-            "10.151.0.0/16",
-            "10.151.112.0/24",
-            "10.151.132.0/22",
-            "10.151.133.6/32",
-            "10.151.133.104/29",
-            "10.151.200.0/22",
-            "10.151.214.0/24",
-            "10.158.0.0/16",
-            "193.132.119.0/24",
-        ]
+  destination_cidr_blocks     = []
   route_table_ids             = ["${concat(module.vpc.public_route_table_ids, module.vpc.private_route_table_ids)}"]
   route_table_count           = "${var.route_table_count}"
-  static_routes_only          = "true"
-  add_static_routes_to_tables = "true"
+  static_routes_only          = "false"
+  add_static_routes_to_tables = "false"
 }
 
 module "leg_b_customer_gateway" {
