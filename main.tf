@@ -53,7 +53,7 @@ module "leg_a_customer_gateway" {
 }
 
 module "leg_b_customer_gateway" {
-  source = "github.com/mergermarket/tf_aws_customer_gw"
+  source = "github.com/mergermarket/tf_aws_customer_gw?ref=static-routes"
 
   name                        = "${var.name_prefix}-${var.leg_b_name}"
   vpn_gateway_id              = "${module.vpn.vgw_id}"
@@ -77,4 +77,7 @@ module "leg_b_customer_gateway" {
   route_table_count           = "${var.route_table_count}"
   static_routes_only          = "true"
   add_static_routes_to_tables = "true"
+
+  
 }
+
