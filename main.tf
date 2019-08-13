@@ -27,6 +27,8 @@ module "vpc" {
 
   private_subnet_tags = "${local.private}"
   public_subnet_tags = "${local.public}"
+  propagate_private_route_tables_vgw = "false"
+  propagate_public_route_tables_vgw = "false"
 
   azs = ["${var.azs}"]
 }
